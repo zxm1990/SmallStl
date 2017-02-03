@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/hejunjian/Desktop/code/STL/TestStlVector.h
+
+/Users/hejunjian/Desktop/code/STL/test.cc
+iostream
+-
+TestStlVector.h
+/Users/hejunjian/Desktop/code/STL/TestStlVector.h
+

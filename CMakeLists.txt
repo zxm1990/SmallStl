@@ -1,0 +1,2 @@
+add_executable(vector_test test.cc)
+target_link_libraries(vector_test)
