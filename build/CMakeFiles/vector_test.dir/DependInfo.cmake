@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/hejunjian/Desktop/code/STL/test.cc" "/Users/hejunjian/Desktop/code/STL/build/CMakeFiles/vector_test.dir/test.cc.o"
+  "/Users/hejunjian/Desktop/code/SmallStl/test.cc" "/Users/hejunjian/Desktop/code/SmallStl/build/CMakeFiles/vector_test.dir/test.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "Clang")
 

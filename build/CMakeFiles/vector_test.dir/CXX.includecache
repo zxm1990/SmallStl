@@ -6,11 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/Users/hejunjian/Desktop/code/STL/TestStlVector.h
+/Users/hejunjian/Desktop/code/SmallStl/TestStlVector.h
 
-/Users/hejunjian/Desktop/code/STL/test.cc
+/Users/hejunjian/Desktop/code/SmallStl/test.cc
 iostream
 -
 TestStlVector.h
-/Users/hejunjian/Desktop/code/STL/TestStlVector.h
+/Users/hejunjian/Desktop/code/SmallStl/TestStlVector.h
 

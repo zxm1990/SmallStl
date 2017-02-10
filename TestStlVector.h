@@ -94,10 +94,590 @@ public:
 template <typename T> class My_Normal_iterator_base
 {
 public:
-	My_Normal_iterator_base();
-	~My_Normal_iterator_base();
+	typedef T            value_type;
+	typedef T*           pointer;
+	typedef const T*     const_pointer;
+	typedef ptrdiff_t    difference_type;
+
+	My_Normal_iterator_base()
+		: ptr(NULL)
+	{
+
+	}
+
+	My_Normal_iterator_base(pointer p)
+		: ptr(p)
+	{
+
+	}
+
+	value_type& operator*()
+	{
+		return *ptr;
+	}
+
+	const value_type& operator*() const
+	{
+		return *ptr;
+	}
+
+	pointer operator->()
+	{
+		return ptr;
+	}
+
+	const_pointer operator->() const
+	{
+		return ptr;
+	}
+
+	//前置
+	My_Normal_iterator_base& operator++()
+	{
+		++ptr;
+		return *this;
+	}
+
+	//后置
+	My_Normal_iterator_base operator++(int)
+	{
+		My_Normal_iterator_base ret = *this;
+		++ptr;
+		return ret;
+	}
+
+	My_Normal_iterator_base& operator--()
+	{
+		--ptr;
+		return *this;
+	}
+
+	My_Normal_iterator_base operator--(int)
+	{
+		My_Normal_iterator_base ret = *this;
+		--ptr;
+		return ret;
+	}
+
+	bool operator!() const
+	{
+		if (!ptr)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	friend My_Normal_iterator_base operator+(const My_Normal_iterator_base &obj, difference_type n)
+	{
+		return My_Normal_iterator_base(obj.ptr + n);
+	}
+
+	friend My_Normal_iterator_base operator-(const My_Normal_iterator_base &obj, difference_type n)
+	{
+		return My_Normal_iterator_base(obj.ptr - n);
+	}
+
+	friend difference_type operator-(const My_Normal_iterator_base &lhs,
+									 const My_Normal_iterator_base &rhs)
+	{
+		return lhs.ptr - rhs.ptr;
+	}
+
+	//通常情况下赋值运算符应该为成员函数
+	friend My_Normal_iterator_base& operator+=(My_Normal_iterator_base &obj,
+												difference_type n)
+	{
+		obj = obj + n;
+		return obj;
+	}
+
+	friend My_Normal_iterator_base& operator-=(My_Normal_iterator_base &obj,
+												difference_type n)
+	{
+		obj = obj - n;
+		return obj;
+	}
+
+	friend bool operator==(const My_Normal_iterator_base &lhs,
+							const My_Normal_iterator_base &rhs)
+	{
+		return lhs.ptr == rhs.ptr;
+	}
+
+	friend bool operator!=(const My_Normal_iterator_base &lhs,
+							const My_Normal_iterator_base &rhs)
+	{
+		return lhs.ptr != rhs.ptr;
+	}
+
+	friend bool operator<(const My_Normal_iterator_base &lhs,
+							const My_Normal_iterator_base &rhs)
+	{
+		return lhs.ptr < rhs.ptr;
+	}
+
+	friend bool operator>(const My_Normal_iterator_base &lhs,
+							const My_Normal_iterator_base &rhs)
+	{
+		return lhs.ptr > rhs.ptr;
+	}
+
+	friend bool operator<=(const My_Normal_iterator_base &lhs,
+							const My_Normal_iterator_base &rhs)
+	{
+		return lhs.ptr <= rhs.ptr;
+	}
+
+	friend bool operator>=(const My_Normal_iterator_base &lhs,
+							const My_Normal_iterator_base &rhs)
+	{
+		return lhs.ptr >= rhs.ptr;
+	}
+
+private:
+	pointer ptr;
 	
 };
+
+
+template <typename T> class My_Normal_const_iterator_base
+{
+public:
+	typedef T            value_type;
+	typedef T*           pointer;
+	typedef const T*     const_pointer;
+	typedef ptrdiff_t    difference_type;
+
+	My_Normal_const_iterator_base()
+		: ptr(NULL)
+	{
+
+	}
+
+	My_Normal_const_iterator_base(const_pointer p)
+		: ptr(p)
+	{
+
+	}
+
+	const value_type& operator*() const
+	{
+		return *ptr;
+	}
+
+	const_pointer operator->() const
+	{
+		return ptr;
+	}
+
+	//前置
+	My_Normal_const_iterator_base& operator++()
+	{
+		++ptr;
+		return *this;
+	}
+
+	//后置
+	My_Normal_const_iterator_base operator++(int)
+	{
+		My_Normal_const_iterator_base ret = *this;
+		++ptr;
+		return ret;
+	}
+
+	My_Normal_const_iterator_base& operator--()
+	{
+		--ptr;
+		return *this;
+	}
+
+	My_Normal_const_iterator_base operator--(int)
+	{
+		My_Normal_const_iterator_base ret = *this;
+		--ptr;
+		return ret;
+	}
+
+	bool operator!() const
+	{
+		if (!ptr)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	friend My_Normal_const_iterator_base operator+(const My_Normal_const_iterator_base &obj, difference_type n)
+	{
+		return My_Normal_const_iterator_base(obj.ptr + n);
+	}
+
+	friend My_Normal_const_iterator_base operator-(const My_Normal_const_iterator_base &obj, difference_type n)
+	{
+		return My_Normal_const_iterator_base(obj.ptr - n);
+	}
+
+	friend difference_type operator-(const My_Normal_const_iterator_base &lhs,
+									 const My_Normal_const_iterator_base &rhs)
+	{
+		return lhs.ptr - rhs.ptr;
+	}
+
+	friend My_Normal_const_iterator_base& operator+=(My_Normal_const_iterator_base &obj,
+												difference_type n)
+	{
+		obj = obj + n;
+		return obj;
+	}
+
+	friend My_Normal_const_iterator_base& operator-=(My_Normal_const_iterator_base &obj,
+												difference_type n)
+	{
+		obj = obj - n;
+		return obj;
+	}
+
+	friend bool operator==(const My_Normal_const_iterator_base &lhs,
+							const My_Normal_const_iterator_base &rhs)
+	{
+		return lhs.ptr == rhs.ptr;
+	}
+
+	friend bool operator!=(const My_Normal_const_iterator_base &lhs,
+							const My_Normal_const_iterator_base &rhs)
+	{
+		return lhs.ptr != rhs.ptr;
+	}
+
+	friend bool operator<(const My_Normal_const_iterator_base &lhs,
+							const My_Normal_const_iterator_base &rhs)
+	{
+		return lhs.ptr < rhs.ptr;
+	}
+
+	friend bool operator>(const My_Normal_const_iterator_base &lhs,
+							const My_Normal_const_iterator_base &rhs)
+	{
+		return lhs.ptr > rhs.ptr;
+	}
+
+	friend bool operator<=(const My_Normal_const_iterator_base &lhs,
+							const My_Normal_const_iterator_base &rhs)
+	{
+		return lhs.ptr <= rhs.ptr;
+	}
+
+	friend bool operator>=(const My_Normal_const_iterator_base &lhs,
+							const My_Normal_const_iterator_base &rhs)
+	{
+		return lhs.ptr >= rhs.ptr;
+	}
+
+private:
+	const_pointer ptr;
+	
+};
+
+
+template <typename T> class My_Reverse_iterator_base
+{
+public:
+	typedef T            value_type;
+	typedef T*           pointer;
+	typedef const T*     const_pointer;
+	typedef ptrdiff_t    difference_type;
+
+	My_Reverse_iterator_base()
+		: ptr(NULL)
+	{
+
+	}
+
+	My_Reverse_iterator_base(pointer p)
+		: ptr(p)
+	{
+
+	}
+
+	value_type& operator*()
+	{
+		return *ptr;
+	}
+
+	const value_type& operator*() const
+	{
+		return *ptr;
+	}
+
+	pointer operator->()
+	{
+		return ptr;
+	}
+
+	const_pointer operator->() const
+	{
+		return ptr;
+	}
+
+	//前置
+	My_Reverse_iterator_base& operator++()
+	{
+		--ptr;
+		return *this;
+	}
+
+	//后置
+	My_Reverse_iterator_base operator++(int)
+	{
+		My_Reverse_iterator_base ret = *this;
+		--ptr;
+		return ret;
+	}
+
+	My_Reverse_iterator_base& operator--()
+	{
+		++ptr;
+		return *this;
+	}
+
+	My_Reverse_iterator_base operator--(int)
+	{
+		My_Reverse_iterator_base ret = *this;
+		++ptr;
+		return ret;
+	}
+
+	bool operator!() const
+	{
+		if (!ptr)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	friend My_Reverse_iterator_base operator+(const My_Reverse_iterator_base &obj, difference_type n)
+	{
+		return My_Reverse_iterator_base(obj.ptr - n);
+	}
+
+	friend My_Reverse_iterator_base operator-(const My_Reverse_iterator_base &obj, difference_type n)
+	{
+		return My_Reverse_iterator_base(obj.ptr + n);
+	}
+
+	friend difference_type operator-(const My_Reverse_iterator_base &lhs,
+									 const My_Reverse_iterator_base &rhs)
+	{
+		return lhs.ptr - rhs.ptr;
+	}
+
+	friend My_Reverse_iterator_base& operator+=(My_Reverse_iterator_base &obj,
+												difference_type n)
+	{
+		obj = obj + n;
+		return obj;
+	}
+
+	friend My_Reverse_iterator_base& operator-=(My_Reverse_iterator_base &obj,
+												difference_type n)
+	{
+		obj = obj - n;
+		return obj;
+	}
+
+	friend bool operator==(const My_Reverse_iterator_base &lhs,
+							const My_Reverse_iterator_base &rhs)
+	{
+		return lhs.ptr == rhs.ptr;
+	}
+
+	friend bool operator!=(const My_Reverse_iterator_base &lhs,
+							const My_Reverse_iterator_base &rhs)
+	{
+		return lhs.ptr != rhs.ptr;
+	}
+
+	friend bool operator<(const My_Reverse_iterator_base &lhs,
+							const My_Reverse_iterator_base &rhs)
+	{
+		return lhs.ptr > rhs.ptr;
+	}
+
+	friend bool operator>(const My_Reverse_iterator_base &lhs,
+							const My_Reverse_iterator_base &rhs)
+	{
+		return lhs.ptr < rhs.ptr;
+	}
+
+	friend bool operator<=(const My_Reverse_iterator_base &lhs,
+							const My_Reverse_iterator_base &rhs)
+	{
+		return lhs.ptr >= rhs.ptr;
+	}
+
+	friend bool operator>=(const My_Reverse_iterator_base &lhs,
+							const My_Reverse_iterator_base &rhs)
+	{
+		return lhs.ptr <= rhs.ptr;
+	}
+
+private:
+	pointer ptr;
+	
+};
+
+template <typename T> class My_Reverse_const_iterator_base
+{
+public:
+	typedef T            value_type;
+	typedef T*           pointer;
+	typedef const T*     const_pointer;
+	typedef ptrdiff_t    difference_type;
+
+	My_Reverse_const_iterator_base()
+		: ptr(NULL)
+	{
+
+	}
+
+	My_Reverse_const_iterator_base(const_pointer p)
+		: ptr(p)
+	{
+
+	}
+
+	const value_type& operator*() const
+	{
+		return *ptr;
+	}
+
+	const_pointer operator->() const
+	{
+		return ptr;
+	}
+
+	//前置
+	My_Reverse_const_iterator_base& operator++()
+	{
+		--ptr;
+		return *this;
+	}
+
+	//后置
+	My_Reverse_const_iterator_base operator++(int)
+	{
+		My_Reverse_const_iterator_base ret = *this;
+		--ptr;
+		return ret;
+	}
+
+	My_Reverse_const_iterator_base& operator--()
+	{
+		++ptr;
+		return *this;
+	}
+
+	My_Reverse_const_iterator_base operator--(int)
+	{
+		My_Reverse_const_iterator_base ret = *this;
+		++ptr;
+		return ret;
+	}
+
+	bool operator!() const
+	{
+		if (!ptr)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	friend My_Reverse_const_iterator_base operator+(const My_Reverse_const_iterator_base &obj, difference_type n)
+	{
+		return My_Reverse_const_iterator_base(obj.ptr - n);
+	}
+
+	friend My_Reverse_const_iterator_base operator-(const My_Reverse_const_iterator_base &obj, difference_type n)
+	{
+		return My_Reverse_const_iterator_base(obj.ptr + n);
+	}
+
+	friend difference_type operator-(const My_Reverse_const_iterator_base &lhs,
+									 const My_Reverse_const_iterator_base &rhs)
+	{
+		return lhs.ptr - rhs.ptr;
+	}
+
+	friend My_Reverse_const_iterator_base& operator+=(My_Reverse_const_iterator_base &obj,
+												difference_type n)
+	{
+		obj = obj + n;
+		return obj;
+	}
+	//调用了减法算术运算符
+	friend My_Reverse_const_iterator_base& operator-=(My_Reverse_const_iterator_base &obj,
+												difference_type n)
+	{
+		obj = obj - n;
+		return obj;
+	}
+
+	friend bool operator==(const My_Reverse_const_iterator_base &lhs,
+							const My_Reverse_const_iterator_base &rhs)
+	{
+		return lhs.ptr == rhs.ptr;
+	}
+
+	friend bool operator!=(const My_Reverse_const_iterator_base &lhs,
+							const My_Reverse_const_iterator_base &rhs)
+	{
+		return lhs.ptr != rhs.ptr;
+	}
+
+	friend bool operator<(const My_Reverse_const_iterator_base &lhs,
+							const My_Reverse_const_iterator_base &rhs)
+	{
+		return lhs.ptr > rhs.ptr;
+	}
+
+	friend bool operator>(const My_Reverse_const_iterator_base &lhs,
+							const My_Reverse_const_iterator_base &rhs)
+	{
+		return lhs.ptr < rhs.ptr;
+	}
+
+	friend bool operator<=(const My_Reverse_const_iterator_base &lhs,
+							const My_Reverse_const_iterator_base &rhs)
+	{
+		return lhs.ptr >= rhs.ptr;
+	}
+
+	friend bool operator>=(const My_Reverse_const_iterator_base &lhs,
+							const My_Reverse_const_iterator_base &rhs)
+	{
+		return lhs.ptr <= rhs.ptr;
+	}
+
+private:
+	const_pointer ptr;
+	
+};
+
 
 }
 
