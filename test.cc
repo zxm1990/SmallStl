@@ -61,6 +61,37 @@ template <typename T> void test_normal_iter(T)
 
 }
 
+void tes_vector()
+{
+	My_vector<char> vec(10, 'w');
+	cout << typeid(vec).name() << endl;
+
+	vec.push_back('a');
+	cout << vec.size() << endl;
+
+	vec.insert(vec.begin() + 2, 3, '2');
+	vec.insert(vec.begin() + 1, vec.begin() + 2, vec.begin() + 5);
+	vec.erase(vec.end() - 1);
+	vec.erase(vec.begin() + 1);
+	for (My_vector<char>::iterator it = vec.begin(); it != vec.end(); ++it)
+	{
+		cout << *it << endl;
+	}
+
+	vec.assign(10, '3');
+	for (My_vector<char>::iterator it = vec.begin(); it != vec.end(); ++it)
+	{
+		cout << *it << endl;
+	}
+
+	My_vector<char> vec2(10, 'g');
+	vec.swap(vec2);
+	for (My_vector<char>::iterator it = vec.begin(); it != vec.end(); ++it)
+	{
+		cout << *it << endl;
+	}
+
+}
 
 int main()
 {
@@ -80,7 +111,7 @@ int main()
 	test_normal_iter(rever_nor_iter);
 	test_normal_iter(rever_const_iter);
 
-
+	tes_vector();
 
 	
 
